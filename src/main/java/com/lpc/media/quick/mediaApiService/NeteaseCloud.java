@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
 @Component
 public class NeteaseCloud implements BaseMediaApi {
     public static final String MEDIA_API_TYPE = "wangyicloud";
-    public static final Pattern FLAG_PATTERN = Pattern.compile("(https?://st.music.163.com/mlog/mlog.html[\\S]*)");
+    public static final Pattern FLAG_PATTERN = Pattern.compile("(https?://st\\.music\\.163\\.com/mlog/mlog\\.html[\\S]*)");
 
     @Resource
     private RestTemplateUtil restTemplateUtil;
