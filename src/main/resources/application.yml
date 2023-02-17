@@ -4,8 +4,29 @@ server:
     context-path: /media/quick/v1
 spring:
   application:
-    name: lyfzn-media-quick-server
-#  cloud:
-#    nacos:
-#      discovery:
-#        server-addr: xxx
+    name: media-quick-server
+  #自动生成数据库表（关键）
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/media_quick?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false&
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+wx:
+  miniapp:
+    configs:
+      - appid: wx14d90000d06fee31
+        secret: e4400c72a094e8d2f24f3ae6026ba0d9
+        token: #微信小程序消息服务器配置的token
+        aesKey: #微信小程序消息服务器配置的EncodingAESKey
+        msgDataFormat: JSON
+
+logging:
+  level:
+    org.springframework.web: info
+    com.github.binarywang.demo.wx.miniapp: debug
+    cn.binarywang.wx.miniapp: debug
