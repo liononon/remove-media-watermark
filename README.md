@@ -1,4 +1,4 @@
-# MediaQuickServer
+# remove-media-watermark
 ## 介绍
 ```text
 本项目采用SpringBoot框架开发
@@ -8,8 +8,6 @@
     微博：单个视频
     网易云音乐：单个视频
 ```
-接口文档：[api-doc](./api-doc/AllInOne-V202107311753.md)  
-安卓APP：[MediaQuickAndroid](https://github.com/zbfzn/MediaQuickAndroid)(须结合MediaQuickServer使用)
 
 ## 环境要求
 ```text
@@ -29,7 +27,7 @@ mvn package
 
 ## 运行
 ```text
-java -jar media-quick-server-1.1.jar
+java -jar remove-media-watermark-1.6.0.jar
 ```
 ## 解析示例
 ```text

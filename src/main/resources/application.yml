@@ -4,7 +4,7 @@ server:
     context-path: /media/quick/v1
 spring:
   application:
-    name: media-quick-server
+    name: remove-media-watermark
   #自动生成数据库表（关键）
   jpa:
     hibernate:
