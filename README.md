@@ -29,15 +29,7 @@ mvn package
 ```text
 java -jar remove-media-watermark-1.6.0.jar
 ```
-## 解析示例
-```text
-0.07 RXM:/ “浪漫至死不渝，我比你想象中更加深情”%你的名字   https://v.douyin.com/ec7LVXv/ 复製此鏈接，达开Dou姻搜索，直接觀kan视频！
-```
-![示例](./images/example.png)
-控制台输出
-![控制台输出](./images/console-out.png)
 
-#### 创作不易，给个star呗(✪ω✪)
 ## 注意
 <font style="color: #ff0000">仅供学习交流使用。 如用本程序于非法用途所导致的后果自负,与作者无关。</font>  
 
