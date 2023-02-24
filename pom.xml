@@ -6,17 +6,16 @@
 
     <groupId>io.liononon</groupId>
     <artifactId>remove-media-watermark</artifactId>
-    <version>${rversion}</version>
+    <version>1.6.0</version>
 
     <properties>
-        <rversion>1.6.0</rversion>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <jsoup.version>1.14.2</jsoup.version>
         <fastjson.version>1.2.83</fastjson.version>
         <apache-commons-lang3.version>3.10</apache-commons-lang3.version>
         <spring-cloud-alibaba-nacos-discovery.version>2.2.1.RELEASE</spring-cloud-alibaba-nacos-discovery.version>
-        <weixin.version>4.4.0</weixin.version>
+        <weixin-java-miniapp.version>4.4.0</weixin-java-miniapp.version>
     </properties>
 
     <dependencies>
@@ -81,9 +80,8 @@
         <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-miniapp</artifactId>
-            <version>${weixin.version}</version>
+            <version>${weixin-java-miniapp.version}</version>
         </dependency>
-
         <!-- mysql  驱动-->
         <dependency>
             <groupId>mysql</groupId>
@@ -99,8 +97,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
-
     </dependencies>
 
     <dependencyManagement>

@@ -36,14 +36,14 @@ public class WxMaConfiguration {
     public WxMaService wxMaService() {
         List<WxMaProperties.Config> configs = this.properties.getConfigs();
         if (configs == null) {
-            throw new WxRuntimeException("大哥，拜托先看下项目首页的说明（readme文件），添加下相关配置，注意别配错了！");
+            throw new WxRuntimeException("wx.miniapp 配置为空");
         }
         WxMaService maService = new WxMaServiceImpl();
         maService.setMultiConfigs(
             configs.stream()
                 .map(a -> {
                     WxMaDefaultConfigImpl config = new WxMaDefaultConfigImpl();
-//                WxMaDefaultConfigImpl config = new WxMaRedisConfigImpl(new JedisPool());
+                    //WxMaDefaultConfigImpl config = new WxMaRedisConfigImpl(new JedisPool());
                     // 使用上面的配置时，需要同时引入jedis-lock的依赖，否则会报类无法找到的异常
                     config.setAppid(a.getAppid());
                     config.setSecret(a.getSecret());
@@ -104,7 +104,6 @@ public class WxMaConfiguration {
         } catch (WxErrorException e) {
             e.printStackTrace();
         }
-
         return null;
     };
 
@@ -121,7 +120,6 @@ public class WxMaConfiguration {
         } catch (WxErrorException e) {
             e.printStackTrace();
         }
-
         return null;
     };
 
