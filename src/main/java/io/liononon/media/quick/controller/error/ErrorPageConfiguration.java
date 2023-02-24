@@ -1,4 +1,4 @@
-package io.liononon.media.quick.error;
+package io.liononon.media.quick.controller.error;
 
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.ErrorPageRegistrar;

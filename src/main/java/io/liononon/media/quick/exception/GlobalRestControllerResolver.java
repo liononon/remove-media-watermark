@@ -2,26 +2,18 @@ package io.liononon.media.quick.exception;
 
 import io.liononon.media.quick.response.CommonResponse;
 import io.liononon.media.quick.response.CommonResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.liononon.media.quick.util.ExceptionUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import io.liononon.media.quick.util.ExceptionUtil;
 
-/**
- * 可以继承扩展
- * @author ZuoBro
- * date: 2021/1/31
- * time: 15:41
- */
+@Slf4j
 @RestControllerAdvice
 public class GlobalRestControllerResolver {
-
-    private final Logger log = LoggerFactory.getLogger(GlobalRestControllerResolver.class);
 
     /**
      * JSR303
@@ -43,11 +35,11 @@ public class GlobalRestControllerResolver {
     public CommonResponse customerError(CustomerException customerException) {
         log.error("自定义异常：{}", customerException.getMessage());
         if (customerException.isPrintStackTrace()) {
-            // 打印错误
             log.error("Cause: ", customerException);
         }
         return CommonResponseUtil.failed(customerException.getErrorCode(), customerException.getMessage());
     }
+
     /**
      * 通用异常处理
      * @param exception
