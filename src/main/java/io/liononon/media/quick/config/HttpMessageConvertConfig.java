@@ -10,11 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author ZuoBro
- * date: 2021/2/6
- * time: 0:01
- */
+
 @Component
 public class HttpMessageConvertConfig {
     /**

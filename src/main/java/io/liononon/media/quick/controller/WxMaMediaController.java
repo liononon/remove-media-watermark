@@ -25,8 +25,6 @@ import java.util.List;
  *  小程序临时素材接口
  *  Created by BinaryWang on 2017/6/16.
  * </pre>
- *
- * @author <a href="https://github.com/binarywang">Binary Wang</a>
  */
 @RestController
 @AllArgsConstructor

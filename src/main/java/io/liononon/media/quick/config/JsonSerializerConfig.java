@@ -11,12 +11,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
-/**
- * 解决Long精度丢失，Long to String
- * @author ZuoBro
- * date: 2021/3/21
- * time: 21:01
- */
 @Configuration
 public class JsonSerializerConfig implements WebMvcConfigurer {
     /**

@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
-/**
- * @author <a href="https://github.com/binarywang">Binary Wang</a>
- */
+@Slf4j
 @RestController
 @AllArgsConstructor
 @RequestMapping("/wx/portal/{appid}")
-@Slf4j
 public class WxPortalController {
 
     private final WxMaService wxMaService;

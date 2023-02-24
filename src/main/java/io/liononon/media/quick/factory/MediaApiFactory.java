@@ -3,6 +3,7 @@ package io.liononon.media.quick.factory;
 import io.liononon.media.quick.exception.CustomerException;
 import io.liononon.media.quick.mediaApiService.BaseMediaApi;
 import io.liononon.media.quick.util.SpringContextUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.SmartInitializingSingleton;
@@ -17,13 +18,10 @@ import java.util.List;
 /**
  * 解析接口工厂类
  *
- * @author ZuoBro
- * date: 2021/5/20
- * time: 3:29
  */
+@Slf4j
 @Component
 public class MediaApiFactory implements SmartInitializingSingleton {
-    private final Logger log = LoggerFactory.getLogger(MediaApiFactory.class);
 
     final private List<BaseMediaApi> mediaApis;
 

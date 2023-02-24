@@ -8,12 +8,6 @@ import io.liononon.media.quick.pojo.dto.MediaParseResult;
 
 import javax.annotation.Resource;
 
-/**
- * 媒体接口
- * @author ZuoBro
- * date: 2021/5/20
- * time: 16:34
- */
 @RestController
 @RequestMapping("/media")
 public class MediaController {

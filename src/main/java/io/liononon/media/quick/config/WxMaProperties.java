@@ -5,9 +5,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
 
-/**
- * @author <a href="https://github.com/binarywang">Binary Wang</a>
- */
 @Data
 @ConfigurationProperties(prefix = "wx.miniapp")
 public class WxMaProperties {

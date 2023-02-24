@@ -5,11 +5,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import io.liononon.media.quick.exception.CustomerException;
 import io.liononon.media.quick.pojo.dto.*;
+import io.liononon.media.quick.util.RestTemplateUtil;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import com.lpc.media.quick.pojo.dto.*;
-import io.liononon.media.quick.util.RestTemplateUtil;
 
 import javax.annotation.Resource;
 import java.util.List;

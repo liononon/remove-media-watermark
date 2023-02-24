@@ -21,9 +21,6 @@ import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author <a href="https://github.com/binarywang">Binary Wang</a>
- */
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(WxMaProperties.class)

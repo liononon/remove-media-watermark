@@ -5,17 +5,10 @@ import io.liononon.media.quick.response.ResultGenerator;
 import org.springframework.web.bind.annotation.*;
 import io.liononon.media.quick.annotation.ApiLog;
 
-/**
- * 媒体接口
- * @author ZuoBro
- * date: 2021/5/20
- * time: 16:34
- */
+
 @RestController
 @RequestMapping("/record")
 public class RecordController {
-
-
 
     @GetMapping("/total")
     @ApiLog
@@ -28,4 +21,5 @@ public class RecordController {
     public String record() {
         return "12";
     }
+
 }

@@ -12,11 +12,6 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-/**
- * @author ZuoBro
- * date: 2021/2/5
- * time: 23:30
- */
 @RestControllerAdvice(basePackages = "top.lyfzn")
 public class DefaultResponseBodyAdvice implements ResponseBodyAdvice<Object> {
     @Override

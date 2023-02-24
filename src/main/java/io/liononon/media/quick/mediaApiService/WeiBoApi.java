@@ -25,8 +25,6 @@ import java.util.stream.Collectors;
 /**
  * 微博视频解析api
  *
- * @author ZuoBro
- * @date 2021/8/10
  */
 @Component
 public class WeiBoApi implements BaseMediaApi{

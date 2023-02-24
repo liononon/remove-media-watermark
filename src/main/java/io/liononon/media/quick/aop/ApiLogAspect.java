@@ -1,5 +1,6 @@
 package io.liononon.media.quick.aop;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -16,16 +17,11 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 
-/**
- * @author ZuoBro
- * @date 2021/1/31
- */
+@Slf4j
 @Aspect
 @Order(1)
 @Component
 public class ApiLogAspect {
-
-    private final Logger log = LoggerFactory.getLogger(ApiLogAspect.class);
 
     @Pointcut(value = "@annotation(io.liononon.media.quick.annotation.ApiLog)")
     public void webLog(){}
