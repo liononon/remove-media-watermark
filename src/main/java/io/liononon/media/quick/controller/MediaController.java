@@ -22,6 +22,11 @@ public class MediaController {
     @PostMapping("/parse")
     @ApiLog
     public MediaParseResult parse(@RequestBody @NonNull String flag) {
-        return mediaApiFactory.getMediaApi(flag).parse(flag);
+        MediaParseResult parseResult = mediaApiFactory.getMediaApi(flag).parse(flag);
+        return parseResult;
     }
+
+    /**
+     * 下载短视频
+     * */
 }

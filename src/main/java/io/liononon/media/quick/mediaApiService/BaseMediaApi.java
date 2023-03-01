@@ -3,6 +3,7 @@ package io.liononon.media.quick.mediaApiService;
 import io.liononon.media.quick.pojo.dto.MediaParseResult;
 
 /**
+ * 媒体解析接口
  */
 public interface BaseMediaApi {
     /**

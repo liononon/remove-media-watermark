@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
  */
 @Component
 public class DouyinApi implements BaseMediaApi {
+
     private static final String MEDIA_API_TYPE = "douyin";
     private static final Pattern FLAG_PATTERN = Pattern.compile("(https?://v\\.douyin\\.com/[^/]+/?)\\s|(https?://www\\.iesdouyin\\.com/[\\S]*)");
 
@@ -154,12 +155,5 @@ public class DouyinApi implements BaseMediaApi {
         }
         throw new CustomerException("该链接不是视频分享链接");
     }
-    public static void main(String[] args) {
-        Matcher matcher = FLAG_PATTERN.matcher("3.3 fB:/ 返场啦 %你的女友已上线  https://v.douyin.com/ePF6UCY/ 緮制此链接，打kaiDou茵搜索，値接观kan視频！\n");
-        if (matcher.find()) {
-            System.out.println(matcher.group(0));
 
-        }
-        System.out.println("         \\hdhsgj".replaceAll("(\\s*)([?*:\"<>\\\\/|]*)", ""));
-    }
 }

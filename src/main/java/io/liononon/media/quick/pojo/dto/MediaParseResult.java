@@ -14,11 +14,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MediaParseResult {
-
     private User user;
     private Media media;
     private String mediaApiType;
-
 }
 
 

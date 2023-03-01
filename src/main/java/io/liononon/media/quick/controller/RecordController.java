@@ -13,7 +13,7 @@ public class RecordController {
     @GetMapping("/total")
     @ApiLog
     public Result total() {
-        return ResultGenerator.genSuccessResult(10);
+        return ResultGenerator.successWithDataResult(10);
     }
 
     @GetMapping("/records")
