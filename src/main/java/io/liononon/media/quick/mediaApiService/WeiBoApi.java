@@ -14,6 +14,7 @@ import io.liononon.media.quick.pojo.dto.User;
 import io.liononon.media.quick.pojo.dto.Video;
 import io.liononon.media.quick.util.RestTemplateUtil;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,12 +29,13 @@ import java.util.stream.Collectors;
  */
 @Component
 public class WeiBoApi implements BaseMediaApi{
+
     private static final String MEDIA_API_TYPE = "weibo";
     private static final Pattern ACCESS_PATTERN = Pattern.compile("(https?://[\\S^.]*?video\\.weibo\\.com/[\\S]*)");
 
-    @Autowired
+    @Resource
     private RestTemplate restTemplate;
-    @Autowired
+    @Resource
     private RestTemplateUtil restTemplateUtil;
 
     private static List<String> videoRateSortList = new LinkedList<>(Arrays.asList("流畅 360P", "标清 480P", "高清 720P", "高清 1080P"));
@@ -54,7 +56,6 @@ public class WeiBoApi implements BaseMediaApi{
         if (matcher.find()) {
             String url = matcher.group(1).trim();
             String api = "https://h5.video.weibo.com/api/component?page=/show/%s";
-
             String id = null;
             if (!url.contains("/show?") && !url.contains("/show/")) {
                 HttpHeaders locationHeaders = restTemplate.headForHeaders(url);
@@ -79,7 +80,6 @@ public class WeiBoApi implements BaseMediaApi{
             // 获取数据解析
             String formData = new JSONObject().fluentPut("Component_Play_Playinfo", new JSONObject().fluentPut("oid", id)).toJSONString();
             String content = restTemplateUtil.postForObject(String.format(api, id), String.format("data=%s", formData), httpHeaders, String.class);
-
             return this.parseResult(content);
         }
         throw new CustomerException("不支持该链接");
@@ -117,10 +117,5 @@ public class WeiBoApi implements BaseMediaApi{
         mediaParseResult.setMedia(video);
         return mediaParseResult;
     }
-    public static void main(String[] args) {
-        Matcher matcher = ACCESS_PATTERN.matcher("https://h5.video.weibo.com/show?fid=1034:4669734915080214");
-        if (matcher.find()) {
-            System.out.println(matcher.group(1));
-        }
-    }
+
 }

@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/media")
 public class MediaController {
+
     @Resource
     private MediaApiFactory mediaApiFactory;
 

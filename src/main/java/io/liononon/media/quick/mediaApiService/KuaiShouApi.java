@@ -32,8 +32,8 @@ import java.util.stream.Collectors;
  */
 @Component
 public class KuaiShouApi implements BaseMediaApi {
-    public static final String MEDIA_API_TYPE = "kuaishou";
 
+    public static final String MEDIA_API_TYPE = "kuaishou";
     private static final Pattern ACCESS_PATTERN = Pattern.compile("(https?://v\\.kuaishou\\.com/[\\S]*)");
 
     @Resource
@@ -59,7 +59,6 @@ public class KuaiShouApi implements BaseMediaApi {
             String url = matcher.group(1);
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.set("User-Agent", "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Mobile Safari/537.36");
-
             httpHeaders.set("Referer", url);
             if (url.contains("v.kuaishou.com")) {
                 // 获取重定向后的地址
@@ -83,25 +82,21 @@ public class KuaiShouApi implements BaseMediaApi {
     private MediaParseResult parseVideoOrPhotos(String url, HttpHeaders headers) {
         MediaParseResult mediaParseResult = new MediaParseResult();
         mediaParseResult.setMediaApiType(getMediaApiType());
-
         // 获取网页内容，从而获取pageData
         String htmlContent = restTemplateUtil.getForObject(url, headers, String.class);
         Document document = Jsoup.parse(htmlContent);
         Elements elements = document.getElementsByTag("script");
         for (int i = 0; i < elements.size(); i++) {
             if (elements.get(i).childNodeSize() > 0) {
-//                log.info(elements.get(i).childNode(0).toString());
                 Matcher matcherForPageData = Pattern.compile("window.pageData[\\s]*=[\\s]*(.*)[\\s]*").matcher(elements.get(i).childNode(0).toString());
                 if (matcherForPageData.find()) {
                     String pageData = matcherForPageData.group(1);
                     JSONObject pageDataOb = JSONObject.parseObject(pageData);
-
                     // 设置用户信息
                     User user = new User();
                     user.setName(pageDataOb.getJSONObject("user").getString("name"));
                     user.setAvatar(pageDataOb.getJSONObject("user").getString("avatar"));
                     user.setDescription("");
-
                     // 添加到结果中
                     mediaParseResult.setUser(user);
                     // 快手视频有图片（横向滑动，纵向滑动）和视频
@@ -116,7 +111,6 @@ public class KuaiShouApi implements BaseMediaApi {
                         List<String> videoUrls = new LinkedList<>();
                         videoUrls.add(mediaJob.getString("srcNoMark"));
                         video.setUrls(videoUrls);
-
                         mediaParseResult.setMedia(video);
                         return mediaParseResult;
                     }
@@ -138,23 +132,19 @@ public class KuaiShouApi implements BaseMediaApi {
                             return photo;
                         }).collect(Collectors.toList());
                         photos.setPhotoList(photoList);
-
                         mediaParseResult.setMedia(photos);
                         return mediaParseResult;
                     }
                     break;
                 }
             }
-
         }
-
         throw new CustomerException("解析失败");
     }
 
     private MediaParseResult parseLongVideo(String url, HttpHeaders headers) {
         MediaParseResult mediaParseResult = new MediaParseResult();
         mediaParseResult.setMediaApiType(getMediaApiType());
-
         // 获取domain(host)
         URI uri = URI.create(url);
         String host = uri.getHost();
@@ -175,7 +165,6 @@ public class KuaiShouApi implements BaseMediaApi {
             JSONObject verifiedDetail = photo.getJSONObject("verifiedDetail");
             // 如果没有作者信息则设为空串
             user.setDescription(Objects.nonNull(verifiedDetail) ? verifiedDetail.getString("description") : "");
-
             // 添加到结果中
             mediaParseResult.setUser(user);
             if (photo.getIntValue("type") == 1) {

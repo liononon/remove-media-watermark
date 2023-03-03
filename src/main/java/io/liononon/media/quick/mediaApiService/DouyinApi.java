@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class DouyinApi implements BaseMediaApi {
 
     private static final String MEDIA_API_TYPE = "douyin";
-    private static final Pattern FLAG_PATTERN = Pattern.compile("(https?://v\\.douyin\\.com/[^/]+/?)\\s|(https?://www\\.iesdouyin\\.com/[\\S]*)");
+    private static final Pattern FLAG_PATTERN = Pattern.compile("(https?://v.douyin.com/[\\S]*)|(https?://www.iesdouyin.com/[\\S]*)");
 
     @Resource
     private RestTemplate restTemplate;
@@ -57,7 +57,7 @@ public class DouyinApi implements BaseMediaApi {
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.set("User-Agent", "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Mobile Safari/537.36");
             if (!url.contains("www.iesdouyin.com")) {
-                // 获取从定向后的地址
+                // 获取重定向后的地址
                 HttpHeaders httpHeadersRes = restTemplate.headForHeaders(url);
                 url = httpHeadersRes.getLocation().toString();
             }
@@ -78,16 +78,21 @@ public class DouyinApi implements BaseMediaApi {
         MediaParseResult mediaParseResult = new MediaParseResult();
         mediaParseResult.setMediaApiType(getMediaApiType());
         // 获取信息的web接口，参数视频id（itemId）
-        String itemApi = "https://www.iesdouyin.com/web/api/v2/aweme/iteminfo/?item_ids=";
+        String itemApiV1 = "https://www.iesdouyin.com/aweme/v1/web/aweme/detail/?aweme_id=";
+        String itemApiV2 = "https://www.iesdouyin.com/web/api/v2/aweme/iteminfo/?item_ids=";
+        String itemApi = itemApiV1;
         String itemId = null;
-        Matcher matcherItemId = Pattern.compile("/share/video/([\\d]*)[/|?]").matcher(url);
         String content = null;
+        Matcher matcherItemId = Pattern.compile("/share/video/([\\d]*)[/|?]").matcher(url);
         if (matcherItemId.find()) {
             // 取出视频id，拼接api
             itemId = matcherItemId.group(1);
-            itemApi = itemApi + itemId;
             headers.set("Referer", url);
-            content = restTemplateUtil.getForObject(itemApi,headers, String.class);
+            content = restTemplateUtil.getForObject(itemApi + itemId, headers, String.class);
+            if (content == null){
+                itemApi = itemApiV2;
+                content = restTemplateUtil.getForObject(itemApi + itemId, headers, String.class);
+            }
             // 用户信息
             User user = new User();
             //获取的数据
